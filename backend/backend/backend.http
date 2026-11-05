@@ -1,6 +1,11 @@
 @backend_HostAddress = http://localhost:5137
 
-GET {{backend_HostAddress}}/weatherforecast/
+### Create a folder in the root
+POST {{backend_HostAddress}}/api/folders/
+Content-Type: application/json
 Accept: application/json
 
-###
+{
+  "name": "abc w /a+",
+  "parentId": null
+}
