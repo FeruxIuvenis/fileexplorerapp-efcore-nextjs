@@ -1,0 +1,64 @@
+@baseUrl = http://localhost:5137
+
+### Get all folders
+GET {{baseUrl}}/api/folders/
+Accept: application/json
+
+### Create a root folder
+POST {{baseUrl}}/api/folders/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "School_Work",
+  "parentId": null
+}
+
+### Create a subfolder
+# Replace 1 with an existing folder ID
+POST {{baseUrl}}/api/folders/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Types and Structs",
+  "parentId": 7
+}
+
+### Create a folder with special characters
+POST {{baseUrl}}/api/folders/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "C++ & Programming!",
+  "parentId": null
+}
+
+### Rename a folder
+# Replace 1 with an existing folder ID
+PATCH {{baseUrl}}/api/folders/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Updated Folder Name",
+  "parentId": null
+}
+
+### Rename a nonexistent folder (expect 404)
+PATCH {{baseUrl}}/api/folders/999999
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Missing Folder",
+  "parentId": null
+}
+
+### Delete a folder
+# Replace 2 with an existing folder ID
+DELETE {{baseUrl}}/api/folders/4
+
+### Delete a nonexistent folder (expect 404)
+DELETE {{baseUrl}}/api/folders/999999
