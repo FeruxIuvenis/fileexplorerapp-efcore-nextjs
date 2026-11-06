@@ -35,6 +35,7 @@ public static class BrowseEndpoint
                     return Results.NotFound("Folder not found");
 
                 parentId = folderId;
+                Console.WriteLine(parentId);
             }
 
             // parentId = null means root(e.g. /)

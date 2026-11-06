@@ -1,0 +1,25 @@
+@baseUrl = http://localhost:5137
+
+### Browse root
+GET {{baseUrl}}/api/browse/
+Accept: application/json
+
+### Browse a folder by slug
+GET {{baseUrl}}/api/browse/c-programming/
+Accept: application/json
+
+### Browse a nested folder
+GET {{baseUrl}}/api/browse/school_work/math
+Accept: application/json
+
+### Browse a deeply nested folder
+GET {{baseUrl}}/api/browse/school_work/math/homework
+Accept: application/json
+
+### Browse a nonexistent folder (expect 404)
+GET {{baseUrl}}/api/browse/does-not-exist
+Accept: application/json
+
+### Browse a path that exceeds the depth limit (expect 400)
+GET {{baseUrl}}/api/browse/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z/a/b/c/d/e
+Accept: application/json

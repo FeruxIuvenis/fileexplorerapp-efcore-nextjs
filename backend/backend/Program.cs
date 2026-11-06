@@ -15,5 +15,6 @@ var app = builder.Build();
 // Register endpoints
 app.MapBrowseEndpoints();
 app.MapFolderEndpoints();
+app.MapNoteEndpoints();
 
 app.Run();
