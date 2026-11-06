@@ -1,0 +1,20 @@
+@baseUrl = http://localhost:5137
+
+### Get all notes
+GET {{baseUrl}}/api/notes/
+Accept: application/json
+
+### Get a note with by ID
+GET {{baseUrl}}/api/notes/1
+Accept: application/json
+
+### Create a new note
+POST {{baseUrl}}/api/notes/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "A new note",
+  "content": "kitlesinin yarisindan coxsu veletdi de",
+  "parentId": null
+}
