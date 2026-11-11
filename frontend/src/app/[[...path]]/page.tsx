@@ -23,6 +23,7 @@ export default function Home() {
                     ))}
                 </div>
             </section>
+            <div className="border-t border-border w-full" />
             <section className="flex flex-col w-full">
                 <header className="flex items-center gap-2 p-4">
                     <TextIcon/>
@@ -47,16 +48,3 @@ export default function Home() {
         </div>
     );
 }
-
-
-// {notes.map((note) => (
-//             <NoteCard
-//                 key={note.id}
-//                 id={note.id}
-//                 title={note.title}
-//                 content={note.content}
-//                 parentId={note.parentId}
-//                 createdAt={note.createdAt}
-//                 updatedAt={note.updatedAt}
-//             />
-//         ))}
