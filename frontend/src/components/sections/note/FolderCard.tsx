@@ -1,20 +1,29 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui'
-import Link from 'next/link';
+"use client";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
+import Link from "next/link";
+
 interface FolderCardProps {
     id: number;
     name: string;
+    slug: string;
     parentId: number | null;
+    currentPath: string;
     createdAt: string;
 }
 
 const FolderCard = ({
-    id,
     name,
-    parentId,
+    slug,
+    currentPath,
     createdAt,
 }: FolderCardProps) => {
+    const href = `/${[currentPath, slug]
+        .filter(Boolean)
+        .join("/")}`;
+
     return (
-        <Link href={`/folders/${id}`} className="w-full">
+        <Link href={href} className="w-full">
             <Card className="hover:shadow-md hover:bg-accent/40 transition-shadow duration-300">
                 <CardHeader>
                     <CardTitle>{name}</CardTitle>
