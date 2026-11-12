@@ -136,7 +136,12 @@ function HomeContent() {
                             key={folder.id}
                             id={folder.id}
                             name={folder.name}
+                            slug={folder.slug}
                             parentId={data.parentId}
+                            currentPath={pathname
+                                .split("/")
+                                .filter(Boolean)
+                                .join("/")}
                             createdAt={folder.createdAt}
                         />
                     ))}
