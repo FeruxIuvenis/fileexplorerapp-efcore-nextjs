@@ -9,6 +9,7 @@ export interface Note {
     id: number;
     title: string;
     content: string;
+    parentId: number | null;
     createdAt: string;
     updatedAt: string;
 }
