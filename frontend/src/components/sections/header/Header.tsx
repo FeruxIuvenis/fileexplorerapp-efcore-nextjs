@@ -5,13 +5,15 @@ import { Card } from "@/components/ui";
 import SearchInput from "./SearchInput";
 import { PathBreadcrumb } from "./PathBreadcrumb";
 import { usePathname } from "next/navigation";
+import AddNewButton from "../explorer/addnew/AddNewButton";
 
 const HeaderContent = () => {
     const pathname = usePathname();
     const segments = pathname?.split("/").filter(Boolean) || [];
 
     return (
-        <Card className="w-full flex items-center p-4 flex-row rounded-md">
+        <Card className="w-full flex items-center p-4 flex-row rounded-md overflow-visible">
+            <AddNewButton />
             <SearchInput />
             <div className="flex items-center gap-2 flex-row">
                 <PathBreadcrumb segments={segments} />
@@ -24,7 +26,7 @@ const Header = () => {
     return (
         <Suspense
             fallback={
-                <Card className="w-full flex items-center p-4 flex-row rounded-md">
+                <Card className="w-full flex items-center p-4 flex-row rounded-md overflow-visible">
                     <SearchInput />
                 </Card>
             }
