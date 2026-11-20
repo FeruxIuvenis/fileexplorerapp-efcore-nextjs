@@ -24,7 +24,7 @@ export default function NoteCardPreview({ note, onOpen }: Props) {
       <CardHeader className="flex items-center justify-between gap-2">
         <CardTitle className="truncate">{note.title}</CardTitle>
         <span className="shrink-0 text-xs text-muted-foreground">
-          Created {formatDate(note.createdAt)}
+          {formatDate(note.createdAt)}
         </span>
       </CardHeader>
 

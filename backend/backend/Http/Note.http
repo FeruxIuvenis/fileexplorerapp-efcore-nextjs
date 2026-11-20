@@ -14,7 +14,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "title": "A new note",
-  "content": "kitlesinin yarisindan coxsu veletdi de",
+  "title": "How to play Valheim",
+  "content": "In this video I will explain to you how to kill the Fader boss",
   "parentId": null
 }
