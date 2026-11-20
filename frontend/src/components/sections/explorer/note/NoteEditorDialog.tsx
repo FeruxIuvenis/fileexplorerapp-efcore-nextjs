@@ -47,7 +47,7 @@ export default function NoteEditorDialog({ editor, updatedAt }: Props) {
               placeholder="Title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="h-auto border-none px-0 pr-8 text-lg font-semibold shadow-none focus-visible:ring-0"
+              className="h-auto border-none px-4 pr-8 text-2xl font-semibold shadow-none focus-visible:ring-0"
             />
           </DialogHeader>
 
