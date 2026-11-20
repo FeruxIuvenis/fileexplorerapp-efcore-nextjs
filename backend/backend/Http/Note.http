@@ -18,3 +18,18 @@ Accept: application/json
   "content": "In this video I will explain to you how to kill the Fader boss",
   "parentId": null
 }
+
+### Edit an existing note
+PATCH {{baseUrl}}/api/notes/2
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "AN EDITED NOTE",
+  "content": "AN EDITED CONTENT",
+  "parentId": null
+}
+
+### Delete an existing note
+DELETE {{baseUrl}}/api/notes/1
+Content-Type: application/json
