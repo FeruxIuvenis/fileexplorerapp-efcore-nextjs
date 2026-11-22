@@ -128,3 +128,22 @@
     @apply font-sans;
   }
 }
+
+.dropdown-menu-animated {
+  opacity: 0;
+  transform: translateY(-4px) scale(0.97);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    visibility 180ms ease;
+  transform-origin: top left;
+}
+
+.dropdown-menu-animated[data-open="true"] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+  pointer-events: auto;
+}
