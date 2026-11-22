@@ -23,9 +23,13 @@ const NewFolderDialog = ({ open, onOpenChange }: Props) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log({ name });
-
-    // TODO: Call your create-folder API.
+    const trimmedName = name.trim();
+    if (trimmedName) {
+      // Handle folder creation logic here
+      console.log("Creating folder:", trimmedName);
+      setName(""); // Clear the input after submission
+      onOpenChange(false); // Close the dialog
+    }
   };
 
   return (
