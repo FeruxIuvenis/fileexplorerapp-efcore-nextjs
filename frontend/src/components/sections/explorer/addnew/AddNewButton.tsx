@@ -11,16 +11,18 @@ import {
 } from "@/components/ui/dropdown-menu";
 import NewNoteDialog from "./NewNoteDialog";
 import NewFolderDialog from "./NewFolderDialog";
+import { useExplorerContext } from "@/components/providers/ExplorerProvider";
 
 export default function AddNewButton() {
     const [noteOpen, setNoteOpen] = useState(false);
     const [folderOpen, setFolderOpen] = useState(false);
 
+    const { isReady } = useExplorerContext();
+
     return (
         <>
             <DropdownMenu>
-                <DropdownMenuTrigger render={<Button />} className="rounded-lg">
-                    <Plus />
+                <DropdownMenuTrigger render={<Button disabled={!isReady} />} className="rounded-lg">    <Plus />
                     Create New
                 </DropdownMenuTrigger>
 
