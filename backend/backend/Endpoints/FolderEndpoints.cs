@@ -1,7 +1,7 @@
 using backend.Models;
 using backend.Models.Dtos;
 using backend.Utils;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Endpoints;
 
@@ -12,23 +12,40 @@ public static class FolderEndpoints
     {
         var group = app.MapGroup("/api/folders");
 
-        // new folder
         group.MapPost("/", async (
             CreateFolderRequest request,
             AppDbContext dbContext
         ) =>
         {
+            var slug = SlugGenerator.CreateSlug(request.Name);
+
+            var exists = await dbContext.Folders
+                .AnyAsync(f =>
+                    f.ParentId == request.ParentId &&
+                    f.Slug == slug
+                );
+
+            if (exists)
+            {
+                return Results.Conflict(
+                    "A folder with this name already exists in this directory."
+                );
+            }
+
             var folder = new FolderClass
             {
                 Name = request.Name,
                 ParentId = request.ParentId,
-                Slug = SlugGenerator.CreateSlug(request.Name)
+                Slug = slug
             };
 
-            var newFolder = dbContext.Folders.Add(folder);
+            dbContext.Folders.Add(folder);
             await dbContext.SaveChangesAsync();
 
-            return Results.Created($"/api/folders/{folder.Id}", folder);
+            return Results.Created(
+                $"/api/folders/{folder.Id}",
+                folder
+            );
         });
 
         group.MapDelete("/{id:int}", async (
@@ -49,6 +66,16 @@ public static class FolderEndpoints
         {
             var folder = await dbContext.Folders.FindAsync(id);
             if (folder == null) return Results.NotFound("Folder wasn't found");
+
+            var slug = folder.Slug;
+
+            var exists = await dbContext.Folders
+                .AnyAsync(f =>
+                    f.ParentId == request.ParentId &&
+                    f.Slug == slug
+                );
+            if (exists) return Results.Conflict("A folder with this name already exists in this directory.");
+
 
             folder.Name = request.Name;
             folder.Slug = SlugGenerator.CreateSlug(request.Name);

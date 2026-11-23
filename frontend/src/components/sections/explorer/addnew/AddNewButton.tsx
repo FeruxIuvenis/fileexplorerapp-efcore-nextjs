@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -22,7 +23,11 @@ export default function AddNewButton() {
     return (
         <>
             <DropdownMenu>
-                <DropdownMenuTrigger render={<Button disabled={!isReady} />} className="rounded-lg">    <Plus />
+                <DropdownMenuTrigger
+                    render={<Button disabled={!isReady} />}
+                    className="rounded-lg"
+                >
+                    <Plus />
                     Create New
                 </DropdownMenuTrigger>
 

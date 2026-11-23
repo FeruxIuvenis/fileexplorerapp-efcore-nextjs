@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useExplorerContext } from "@/components/providers/ExplorerProvider";
@@ -31,9 +32,10 @@ const NewNoteDialog = ({ open, onOpenChange }: Props) => {
 
         await createNote({ title, content, parentId: currentFolderId });
 
-        refresh();            // reload the list so the new note appears
+        refresh();
+        setTitle("");
+        setContent("");
         onOpenChange(false);
-
     };
 
     return (
@@ -82,7 +84,6 @@ const NewNoteDialog = ({ open, onOpenChange }: Props) => {
                             type="submit"
                             disabled={!title.trim() && !content.trim()}
                         >
-
                             Create note
                         </Button>
                     </DialogFooter>

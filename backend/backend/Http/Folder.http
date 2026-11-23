@@ -10,7 +10,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "name": "School_Work",
+  "name": "a b c d ",
   "parentId": null
 }
 
@@ -58,7 +58,4 @@ Accept: application/json
 
 ### Delete a folder
 # Replace 2 with an existing folder ID
-DELETE {{baseUrl}}/api/folders/4
-
-### Delete a nonexistent folder (expect 404)
-DELETE {{baseUrl}}/api/folders/999999
+DELETE {{baseUrl}}/api/folders/6
