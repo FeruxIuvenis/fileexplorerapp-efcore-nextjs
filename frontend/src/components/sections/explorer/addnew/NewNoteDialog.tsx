@@ -1,5 +1,7 @@
+
 "use client";
 
+import { useExplorerContext } from "@/components/providers/ExplorerProvider";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
@@ -11,6 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { createNote } from "@/utils/api/note";
 import { useState } from "react";
 
 type Props = {
@@ -22,12 +25,17 @@ const NewNoteDialog = ({ open, onOpenChange }: Props) => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const { currentFolderId, refresh } = useExplorerContext();
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        console.log({ title, content });
+        await createNote({ title, content, parentId: currentFolderId });
 
-        // TODO: Call your create-note API.
+        refresh();
+        setTitle("");
+        setContent("");
+        onOpenChange(false);
     };
 
     return (
@@ -76,7 +84,6 @@ const NewNoteDialog = ({ open, onOpenChange }: Props) => {
                             type="submit"
                             disabled={!title.trim() && !content.trim()}
                         >
-
                             Create note
                         </Button>
                     </DialogFooter>
