@@ -32,11 +32,9 @@ export default function NoteEditorDialog({ editor, updatedAt }: Props) {
 
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
-      {/* The built-in X button in the corner also goes through onOpenChange */}
       <DialogContent className="sm:max-w-xl">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <DialogHeader>
-            {/* Required for accessibility; the visible title is the input below */}
             <DialogTitle className="sr-only">Edit note</DialogTitle>
             <DialogDescription className="sr-only">
               Edit the title and content of this note.

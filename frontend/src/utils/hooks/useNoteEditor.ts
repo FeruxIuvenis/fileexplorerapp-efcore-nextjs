@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import type { Note } from "@/utils/types";
+import { updateNote } from "../api/note";
 
 export function useNoteEditor(note: Note) {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,8 +37,11 @@ export function useNoteEditor(note: Note) {
     event.preventDefault();
     if (!isDirty) return;
 
-    // TODO: send { id: note.id, title, content } to the backend
-    console.log("Save note", { id: note.id, title, content });
+    await updateNote({
+      id: note.id,
+      title,
+      content,
+    });
 
     closeNow();
   };
