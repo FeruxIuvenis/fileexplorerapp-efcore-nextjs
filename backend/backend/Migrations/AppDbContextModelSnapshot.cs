@@ -39,6 +39,8 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ParentId");
+
                     b.ToTable("Folders");
                 });
 
@@ -67,7 +69,25 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ParentId");
+
                     b.ToTable("Notes");
+                });
+
+            modelBuilder.Entity("backend.Models.FolderClass", b =>
+                {
+                    b.HasOne("backend.Models.FolderClass", null)
+                        .WithMany()
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("backend.Models.NoteClass", b =>
+                {
+                    b.HasOne("backend.Models.FolderClass", null)
+                        .WithMany()
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
