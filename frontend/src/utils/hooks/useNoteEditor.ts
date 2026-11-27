@@ -3,12 +3,15 @@
 import { useState, type FormEvent } from "react";
 import type { Note } from "@/utils/types";
 import { updateNote } from "../api/note";
+import { useExplorerContext } from "@/components/providers/ExplorerProvider";
 
 export function useNoteEditor(note: Note) {
   const [isOpen, setIsOpen] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [title, setTitle] = useState(note.title);
   const [content, setContent] = useState(note.content);
+
+  const { refresh } = useExplorerContext();
 
   const isDirty = title !== note.title || content !== note.content;
 
@@ -43,6 +46,7 @@ export function useNoteEditor(note: Note) {
       content,
     });
 
+    refresh();
     closeNow();
   };
 
